@@ -4,9 +4,9 @@ abstract class Cell {
     private int x;
     private int y;
 
-    public Cell(int x, int y) {
-        this.x = x;
+    public Cell(int y, int x) {
         this.y = y;
+        this.x = x;
     }
 
     public Cell setX(int x) {
@@ -14,7 +14,7 @@ abstract class Cell {
         return this;
     }
     public int getX() {
-        this.x = x;
+        return x;
     }
 
     public Cell setY(int y) {
@@ -22,6 +22,6 @@ abstract class Cell {
         return this;
     }
     public int getY() {
-        this.y = y;
+        return y;
     }
 }

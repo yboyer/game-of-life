@@ -5,8 +5,8 @@ abstract class Fish extends Cell {
     private int breedingCycle;
     private int deathCycle;
 
-    public Fish(int x, int y) {
-        super(x, y);
+    public Fish(int y, int x) {
+        super(y, x);
 
         this.age = 0;
         this.deathCycle = Math.random() * 30;
