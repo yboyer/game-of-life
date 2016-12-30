@@ -9,7 +9,7 @@ abstract class Fish extends Cell {
         super(y, x);
 
         this.age = 0;
-        this.deathCycle = Math.random() * 30;
-        this.breedingCycle = Math.random() * 30;
+        this.deathCycle = (int) Math.random() * 30;
+        this.breedingCycle = (int) (Math.random() * 30);
     }
 }

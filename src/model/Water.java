@@ -1,12 +1,12 @@
 package model;
 
-class Shark extends Fish {
+class Water extends Cell {
 
-    public Shark(int x, int y) {
+    public Water(int x, int y) {
         super(x, y);
     }
 
     public String toString() {
-        return "O";
+        return "~";
     }
 }
