@@ -1,10 +1,12 @@
 package model;
 
 public class GameOfLife {
+    private static Sea sea;
 
     public static void main(String[] args) {
-        // Sea sea = new Sea(5, 5, 2, 10);
-        System.out.println(sea);
+        // try { sea = new Sea(10, 10, 3, 2); } catch (Exception e) { }
+        sea = getDefault();
+        startLife(500);
     }
 
     private static Sea getDefault() {
@@ -27,5 +29,28 @@ public class GameOfLife {
         }
 
         return new Sea(grid);
+    }
+
+    /**
+     * Start life for a defined time
+     * @param nbCycle The number of cycle to apply
+     */
+    public static void startLife(int nbCycle) {
+        int cycle;
+        for (cycle = 0; cycle < nbCycle; cycle++) {
+            System.out.printf("######### Cycle %02d #########", cycle);
+            System.out.println(sea);
+            sea.applyCycle();
+        }
+
+        System.out.printf("######### Cycle %02d #########", cycle);
+        System.out.println(sea);
+    }
+
+    /**
+     * Start life for an unlimited time
+     */
+    public static void startLife() {
+        startLife((int) Double.POSITIVE_INFINITY);
     }
 }

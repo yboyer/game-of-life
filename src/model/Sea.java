@@ -1,6 +1,6 @@
 package model;
 
-import java.util.*;
+import java.util.ArrayList;
 
 
 class Sea {
@@ -143,11 +143,22 @@ class Sea {
     }
 
     /**
+     * Apply a cycle for the whole sea
+     */
+    public void applyCycle() {
+        int y, x;
+
+        for (Fish fish : fishies) {
+            fish.act(this);
+        }
+    }
+
+    /**
      * Return a list of nearby cells of a given cell
      * @param cell Cell to inspect
      * @return List of the nearby cells
      */
-    private ArrayList<Cell> getNearbyCells(Cell cell) {
+    public ArrayList<Cell> getNearbyCells(Cell cell) {
         ArrayList<Cell> cells = new ArrayList<Cell>();
         int minY = cell.getY() - 1;
         int minX = cell.getX() - 1;
