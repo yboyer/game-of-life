@@ -5,6 +5,7 @@ import java.util.*;
 
 class Sea {
     private Cell[][] grid;
+    private ArrayList<Fish> fishies;
     private int height;
     private int width;
 
@@ -31,6 +32,7 @@ class Sea {
         this.width = width;
 
         this.grid = new Cell[getHeight()][getWidth()];
+        this.fishies = new ArrayList<Fish>();
     }
 
     /**
@@ -39,8 +41,18 @@ class Sea {
      */
     public Sea(Cell[][] defaultCells) {
         this(defaultCells.length, defaultCells[0].length);
-
         this.grid = defaultCells;
+
+        // Add fishies into the list
+        int x, y;
+        for (int i = 0; i < getHeight() * getWidth(); i++) {
+            y = i % getHeight();
+            x = i / getHeight();
+
+            if (grid[y][x] instanceof Fish) {
+                fishies.add((Fish) grid[y][x]);
+            }
+        }
     }
 
     /**
