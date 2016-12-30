@@ -146,10 +146,11 @@ class Sea {
      * Apply a cycle for the whole sea
      */
     public void applyCycle() {
-        int y, x;
-
-        for (Fish fish : fishies) {
-            fish.act(this);
+        for (int i = 0; i < fishies.size(); i++) {
+            int actValue = fishies.get(i).act(this);
+            if (actValue == Fish.DEAD) {
+                i--;
+            }
         }
     }
 
@@ -189,6 +190,21 @@ class Sea {
         }
 
         return cells;
+    }
+
+    /**
+     * Kill a fish on the sea
+     * @param fish A fish to kill
+     */
+    public void kill(Fish fish) {
+        fishies.remove(fish);
+
+        // Replace the `dead` fish by a water cell
+        int y = fish.getY();
+        int x = fish.getX();
+        grid[y][x] = new Water(y, x);
+
+        System.out.println("Death of {" + y + ", " + x + "} (" + fish + ")");
     }
 
     /**

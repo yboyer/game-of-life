@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 
 abstract class Fish extends Cell {
+    public static int DEAD = -1;
     private static int DEATHCYCLE = 20;
     private static int DEATHCYCLEAVG = DEATHCYCLE / 3;
     private static int BREEDINGCYCLE = 4;
@@ -29,16 +30,24 @@ abstract class Fish extends Cell {
     /**
      * ..and Action !
      * @param sea The sea to interact with
+     * @return The status code of the fish
      */
-    public void act(Sea sea) {
+    public int act(Sea sea) {
+        // Kill the fish if it deserves to die
+        if (age == deathCycle) {
+            sea.kill(this);
+            return DEAD;
+        }
+
+        // TODO: It's time to breed ?
+
         ArrayList<Water> cells = getWaterCells(sea.getNearbyCells(this));
         int index = (int) (Math.random() * cells.size());
-
-        // TODO: Is it time to die ?
-        // TODO: It's time to breed ?
         sea.transposeCells(this, cells.get(index));
 
         age++;
+
+        return 0;
     }
 
     /**
