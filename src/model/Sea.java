@@ -123,12 +123,23 @@ class Sea {
                 int rY = (int) (Math.random() * this.getHeight());
 
                 // Swap current cell with a random one
-                Cell temp = grid[y][x];
-
-                grid[y][x] = grid[rY][rX].setX(x).setY(y);
-                grid[rY][rX] = temp.setX(rX).setY(rY);
+                transposeCells(grid[y][x], grid[rY][rX]);
             }
         }
+    }
+
+    /**
+     * Transpose two cells
+     * @param c1 The first cell
+     * @param c1 The second cell
+     */
+    public void transposeCells(Cell c1, Cell c2) {
+        int c1Y = c1.getY();
+        int c1X = c1.getX();
+        int c2Y = c2.getY();
+        int c2X = c2.getX();
+        grid[c2Y][c2X] = c1.setY(c2Y).setX(c2X);
+        grid[c1Y][c1X] = c2.setY(c1Y).setX(c1X);
     }
 
     /**
