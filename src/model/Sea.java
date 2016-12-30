@@ -148,8 +148,10 @@ class Sea {
     public void applyCycle() {
         for (int i = 0; i < fishies.size(); i++) {
             int actValue = fishies.get(i).act(this);
-            if (actValue == Fish.DEAD) {
+            if (actValue == Fish.ACT_DEAD) {
                 i--;
+            } else if (actValue == Fish.ACT_BREED) {
+                i++;
             }
         }
     }
@@ -210,8 +212,11 @@ class Sea {
     /**
      *
      */
-    public void spawn(Fish fish) {
-        fishies.add(fish);
+    public void spawn(Fish fish, Fish parentFish) {
+        // Add the new born fish right after the parent fish position
+        // to prevent it to directly move after its born
+        int parentFishIndex = fishies.indexOf(parentFish) + 1;
+        fishies.add(parentFishIndex, fish);
 
         // Replace the water by the newborn fish
         int y = fish.getY();

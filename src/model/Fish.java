@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 
 abstract class Fish extends Cell {
-    public static int DEAD = -1;
+    public static int ACT_OK = 0;
+    public static int ACT_DEAD = -1;
+    public static int ACT_BREED = 1;
     private static int DEATHCYCLE = 20;
     private static int DEATHCYCLEAVG = DEATHCYCLE / 3;
     private static int BREEDINGCYCLE = 4;
@@ -51,10 +53,12 @@ abstract class Fish extends Cell {
      * @return The status code of the fish
      */
     public int act(Sea sea) {
+        int statusCode = ACT_OK;
+
         // Kill the fish if it deserves to die
         if (age == deathCycle) {
             sea.kill(this);
-            return DEAD;
+            return ACT_DEAD;
         }
 
         ArrayList<Water> cells = getWaterCells(sea.getNearbyCells(this));
@@ -67,9 +71,11 @@ abstract class Fish extends Cell {
                 int y = waterCell.getY();
                 int x = waterCell.getX();
 
-                sea.spawn(getBaby(y, x));
+                sea.spawn(getBaby(y, x), this);
 
                 cells.remove(waterCell);
+
+                statusCode = ACT_BREED;
             }
         }
 
@@ -81,7 +87,7 @@ abstract class Fish extends Cell {
 
         age++;
 
-        return 0;
+        return statusCode;
     }
 
     /**
