@@ -208,11 +208,25 @@ class Sea {
     }
 
     /**
+     *
+     */
+    public void spawn(Fish fish) {
+        fishies.add(fish);
+
+        // Replace the water by the newborn fish
+        int y = fish.getY();
+        int x = fish.getX();
+        grid[y][x] = fish;
+
+        System.out.println("New born in {" + y + ", " + x + "} (" + fish + ")");
+    }
+
+    /**
      * Return the grid as a string
      * @return The grid
      */
     public String toString() {
-        String display = "\n";
+        String display = "";
 
         for (int y = 0; y < getHeight(); y++) {
             for (int x = 0; x < getWidth(); x++) {

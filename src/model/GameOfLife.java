@@ -38,12 +38,12 @@ public class GameOfLife {
     public static void startLife(int nbCycle) {
         int cycle;
         for (cycle = 0; cycle < nbCycle; cycle++) {
-            System.out.printf("######### Cycle %02d #########", cycle);
+            System.out.printf("\n######### Cycle %02d #########\n", cycle);
             System.out.println(sea);
             sea.applyCycle();
         }
 
-        System.out.printf("######### Cycle %02d #########", cycle);
+        System.out.printf("\n######### Cycle %02d #########\n", cycle);
         System.out.println(sea);
     }
 

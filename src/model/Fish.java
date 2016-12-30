@@ -28,6 +28,24 @@ abstract class Fish extends Cell {
     }
 
     /**
+     * Return a baby fish with the current fish type
+     * @param y The Y coordinate
+     * @param x The X coordinate
+     * @return A baby fish
+     */
+    public Fish getBaby(int y, int x) {
+        try {
+            return this.getClass()
+                .getConstructor(int.class, int.class)
+                .newInstance(y, x);
+        } catch (Exception e) {
+            // NoSuchMethodException
+            // InstantiationException
+            return null;
+        }
+    }
+
+    /**
      * ..and Action !
      * @param sea The sea to interact with
      * @return The status code of the fish
@@ -39,11 +57,27 @@ abstract class Fish extends Cell {
             return DEAD;
         }
 
-        // TODO: It's time to breed ?
-
         ArrayList<Water> cells = getWaterCells(sea.getNearbyCells(this));
-        int index = (int) (Math.random() * cells.size());
-        sea.transposeCells(this, cells.get(index));
+
+        // Breed
+        if (!cells.isEmpty()) {
+            int breedIndex = (int) (Math.random() * cells.size());
+            if (age == breedingCycle) {
+                Water waterCell = cells.get(breedIndex);
+                int y = waterCell.getY();
+                int x = waterCell.getX();
+
+                sea.spawn(getBaby(y, x));
+
+                cells.remove(waterCell);
+            }
+        }
+
+        // Move
+        if (!cells.isEmpty()) {
+            int index = (int) (Math.random() * cells.size());
+            sea.transposeCells(this, cells.get(index));
+        }
 
         age++;
 
