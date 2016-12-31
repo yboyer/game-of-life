@@ -8,6 +8,7 @@ class Sea {
     private ArrayList<Fish> fishies;
     private int height;
     private int width;
+    private int fishiesIndex;
 
     /**
      * Generate and populate the sea
@@ -15,6 +16,7 @@ class Sea {
      * @param width Width of the sea
      * @param nbSharks Count of sharks to add
      * @param nbPilchards Count of pilchards to add
+     * @throws Exception If the number of fish to add is greater than the grid size
      */
     public Sea(int height, int width, int nbSharks, int nbPilchards) throws Exception {
         this(height, width);
@@ -146,19 +148,14 @@ class Sea {
      * Apply a cycle for the whole sea
      */
     public void applyCycle() {
-        for (int i = 0; i < fishies.size(); i++) {
-            int actValue = fishies.get(i).act(this);
-            if (actValue == Fish.ACT_DEAD) {
-                i--;
-            } else if (actValue == Fish.ACT_BREED) {
-                i++;
-            }
+        for (fishiesIndex = 0; fishiesIndex < fishies.size(); fishiesIndex++) {
+            fishies.get(fishiesIndex).act(this);
         }
     }
 
     /**
      * Return a list of nearby cells of a given cell
-     * @param cell Cell to inspect
+     * @param cell The cell to inspect
      * @return List of the nearby cells
      */
     public ArrayList<Cell> getNearbyCells(Cell cell) {
@@ -195,35 +192,41 @@ class Sea {
     }
 
     /**
-     * Kill a fish on the sea
-     * @param fish A fish to kill
+     * Kill a fish
+     * @param fish The fish to kill
      */
     public void kill(Fish fish) {
-        fishies.remove(fish);
-
         // Replace the `dead` fish by a water cell
         int y = fish.getY();
         int x = fish.getX();
         grid[y][x] = new Water(y, x);
 
-        System.out.println("Death of {" + y + ", " + x + "} (" + fish + ")");
+        fishies.remove(fish);
+        if (fishies.indexOf(fish) <= fishiesIndex) {
+            fishiesIndex--;
+        }
+
+        System.out.println("   Death on {" + y + ", " + x + "} (" + fish + ")");
     }
 
     /**
-     *
+     * Spawn a fish on the sea
+     * @param fish The fish to spawn
+     * @param parentFish The parent of the newborn fish
      */
     public void spawn(Fish fish, Fish parentFish) {
-        // Add the new born fish right after the parent fish position
-        // to prevent it to directly move after its born
-        int parentFishIndex = fishies.indexOf(parentFish) + 1;
-        fishies.add(parentFishIndex, fish);
-
         // Replace the water by the newborn fish
         int y = fish.getY();
         int x = fish.getX();
         grid[y][x] = fish;
 
-        System.out.println("New born in {" + y + ", " + x + "} (" + fish + ")");
+        // Add the new born fish right after the parent fish position
+        // to prevent it to directly move after its born
+        int parentFishIndex = fishies.indexOf(parentFish) + 1;
+        fishies.add(parentFishIndex, fish);
+        fishiesIndex++;
+
+        System.out.println("New born on {" + y + ", " + x + "} (" + fish + ")");
     }
 
     /**
