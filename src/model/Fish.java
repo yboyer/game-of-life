@@ -7,27 +7,28 @@ abstract class Fish extends Cell {
     public static int ACT_OK = 0;
     public static int ACT_DEAD = -1;
     public static int ACT_BREED = 1;
-    private static int DEATHCYCLE = 20;
-    private static int DEATHCYCLEAVG = DEATHCYCLE / 3;
-    private static int BREEDINGCYCLE = 4;
-    private static int BREEDINGCYCLEAVG = BREEDINGCYCLE / 3;
     protected int age;
-    protected int breedingCycle;
-    protected int deathCycle;
 
+    /**
+     * The fish constructor
+     * @param y The Y coordinate
+     * @param x The X coordinate
+     */
     public Fish(int y, int x) {
         super(y, x);
-
         this.age = 0;
-
-        int minDeathCycle = DEATHCYCLE - DEATHCYCLEAVG;
-        int maxDeathCycle = DEATHCYCLE + DEATHCYCLEAVG;
-        this.deathCycle = (int) (Math.random() * (maxDeathCycle - minDeathCycle)) + minDeathCycle;
-
-        int minBreedingCycle = BREEDINGCYCLE - BREEDINGCYCLEAVG;
-        int maxBreedingCycle = BREEDINGCYCLE + BREEDINGCYCLEAVG;
-        this.breedingCycle = (int) (Math.random() * (maxBreedingCycle - minBreedingCycle)) + minBreedingCycle;
     }
+
+    /**
+     * Get the death cycle
+     * @return The death cycle
+     */
+    protected abstract int getDeathCycle();
+    /**
+     * Get the breed cycle
+     * @return The breed cycle
+     */
+    protected abstract int getBreedingCycle();
 
     /**
      * Return a baby fish with the current fish type
@@ -52,7 +53,7 @@ abstract class Fish extends Cell {
      * @return True if it need to die
      */
     protected boolean isAgeDeath() {
-        if (age == deathCycle) {
+        if (age == getDeathCycle()) {
             return true;
         }
         return false;
@@ -90,7 +91,7 @@ abstract class Fish extends Cell {
         ArrayList<Water> cells = getNearbyWaterCells(sea);
 
         if (!cells.isEmpty()) {
-            if (age == breedingCycle) {
+            if (age == getBreedingCycle()) {
                 int breedIndex = (int) (Math.random() * cells.size());
                 Water waterCell = cells.get(breedIndex);
                 int y = waterCell.getY();
@@ -145,5 +146,21 @@ abstract class Fish extends Cell {
         return waterCells;
     }
 
+    /**
+     * Get a random value between (cycle - range) and (cycle + range)
+     * @param cycle The cycle
+     * @param range The range
+     * @return The average
+     */
+    public static int getCycleAverage(int cycle, int range) {
+        int minCycle = cycle - range;
+        int maxCycle = cycle + range;
+        return (int) (Math.random() * (maxCycle - minCycle)) + minCycle;
+    }
+
+    /**
+     * Return the display the fish
+     * @return The display the fish
+     */
     public abstract String toString();
 }
