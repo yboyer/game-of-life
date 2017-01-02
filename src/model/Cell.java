@@ -14,7 +14,7 @@ abstract class Cell {
         return this;
     }
     public int getX() {
-        return x;
+        return this.x;
     }
 
     public Cell setY(int y) {
@@ -22,6 +22,6 @@ abstract class Cell {
         return this;
     }
     public int getY() {
-        return y;
+        return this.y;
     }
 }

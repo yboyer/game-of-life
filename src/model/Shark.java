@@ -25,7 +25,7 @@ class Shark extends Fish {
      * @return The death cycle
      */
     protected int getDeathCycle() {
-        return deathCycle;
+        return this.deathCycle;
     }
 
     /**
@@ -33,7 +33,7 @@ class Shark extends Fish {
      * @return The breed cycle
      */
     protected int getBreedingCycle() {
-        return breedingCycle;
+        return this.breedingCycle;
     }
 
     /**

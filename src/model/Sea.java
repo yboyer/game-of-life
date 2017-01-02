@@ -52,7 +52,7 @@ class Sea {
             x = i / getHeight();
 
             if (grid[y][x] instanceof Fish) {
-                fishies.add((Fish) grid[y][x]);
+                this.fishies.add((Fish) grid[y][x]);
             }
         }
     }
@@ -72,7 +72,7 @@ class Sea {
      * @return The height of the sea
      */
     public int getWidth() {
-        return width;
+        return this.width;
     }
 
     /**
@@ -80,7 +80,7 @@ class Sea {
      * @return The width of the sea
      */
     public int getHeight() {
-        return height;
+        return this.height;
     }
 
     /**
@@ -100,21 +100,21 @@ class Sea {
         for (i = 0; i < nbPilchards; i++) {
             y = i % getHeight();
             x = i / getHeight();
-            grid[y][x] = new Pilchard(y, x);
+            this.grid[y][x] = new Pilchard(y, x);
         }
 
         // Add sharks
         for (i = nbPilchards; i < nbPilchards + nbSharks; i++) {
             y = i % getHeight();
             x = i / getHeight();
-            grid[y][x] = new Shark(y, x);
+            this.grid[y][x] = new Shark(y, x);
         }
 
         // Add water
         for (i = nbPilchards + nbSharks; i < getHeight() * getWidth(); i++) {
             y = i % getHeight();
             x = i / getHeight();
-            grid[y][x] = new Water(y, x);
+            this.grid[y][x] = new Water(y, x);
         }
 
         // Randomize the whole sea
@@ -125,7 +125,7 @@ class Sea {
                 int rY = (int) (Math.random() * this.getHeight());
 
                 // Swap current cell with a random one
-                transposeCells(grid[y][x], grid[rY][rX]);
+                transposeCells(this.grid[y][x], this.grid[rY][rX]);
             }
         }
     }
@@ -140,16 +140,16 @@ class Sea {
         int c1X = c1.getX();
         int c2Y = c2.getY();
         int c2X = c2.getX();
-        grid[c2Y][c2X] = c1.setY(c2Y).setX(c2X);
-        grid[c1Y][c1X] = c2.setY(c1Y).setX(c1X);
+        this.grid[c2Y][c2X] = c1.setY(c2Y).setX(c2X);
+        this.grid[c1Y][c1X] = c2.setY(c1Y).setX(c1X);
     }
 
     /**
      * Apply a cycle for the whole sea
      */
     public void applyCycle() {
-        for (fishiesIndex = 0; fishiesIndex < fishies.size(); fishiesIndex++) {
-            fishies.get(fishiesIndex).act(this);
+        for (this.fishiesIndex = 0; this.fishiesIndex < fishies.size(); this.fishiesIndex++) {
+            fishies.get(this.fishiesIndex).act(this);
         }
     }
 
@@ -183,7 +183,7 @@ class Sea {
         for (int y = minY; y <= maxY; y++) {
             for (int x = minX; x <= maxX; x++) {
                 if (y != cell.getY() || x != cell.getX()) {
-                    cells.add(grid[y][x]);
+                    cells.add(this.grid[y][x]);
                 }
             }
         }
@@ -199,11 +199,11 @@ class Sea {
         // Replace the `dead` fish by a water cell
         int y = fish.getY();
         int x = fish.getX();
-        grid[y][x] = new Water(y, x);
+        this.grid[y][x] = new Water(y, x);
 
-        fishies.remove(fish);
-        if (fishies.indexOf(fish) <= fishiesIndex) {
-            fishiesIndex--;
+        this.fishies.remove(fish);
+        if (this.fishies.indexOf(fish) <= this.fishiesIndex) {
+            this.fishiesIndex--;
         }
 
         System.out.println("   Death on {" + y + ", " + x + "} (" + fish + ")");
@@ -218,13 +218,13 @@ class Sea {
         // Replace the water by the newborn fish
         int y = fish.getY();
         int x = fish.getX();
-        grid[y][x] = fish;
+        this.grid[y][x] = fish;
 
         // Add the new born fish right after the parent fish position
         // to prevent it to directly move after its born
-        int parentFishIndex = fishies.indexOf(parentFish) + 1;
-        fishies.add(parentFishIndex, fish);
-        fishiesIndex++;
+        int parentFishIndex = this.fishies.indexOf(parentFish) + 1;
+        this.fishies.add(parentFishIndex, fish);
+        this.fishiesIndex++;
 
         System.out.println("New born on {" + y + ", " + x + "} (" + fish + ")");
     }
@@ -238,7 +238,7 @@ class Sea {
 
         for (int y = 0; y < getHeight(); y++) {
             for (int x = 0; x < getWidth(); x++) {
-                display += grid[y][x].toString();
+                display += this.grid[y][x].toString();
             }
             display += "\n";
         }

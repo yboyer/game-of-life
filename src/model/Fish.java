@@ -53,7 +53,7 @@ abstract class Fish extends Cell {
      * @return True if it need to die
      */
     protected boolean isAgeDeath() {
-        if (age == getDeathCycle()) {
+        if (this.age == getDeathCycle()) {
             return true;
         }
         return false;
