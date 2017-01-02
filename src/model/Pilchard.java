@@ -1,5 +1,10 @@
 package model;
 
+/**
+ * Represents a pilchard.
+ *
+ * He can be eaten by a {@link model.Shark shark}.
+ */
 class Pilchard extends Fish {
     private static int DEATHCYCLE = 20;
     private static int DEATHCYCLE_RANGE = DEATHCYCLE / 3;
@@ -13,33 +18,24 @@ class Pilchard extends Fish {
      * @param y The Y coordinate
      * @param x The X coordinate
      */
-    public Pilchard(int x, int y) {
-        super(x, y);
+    public Pilchard(int y, int x) {
+        super(y, x);
 
         this.deathCycle = Fish.getCycleAverage(DEATHCYCLE, DEATHCYCLE_RANGE);
         this.breedingCycle = Fish.getCycleAverage(BREEDINGCYCLE, BREEDINGCYCLE_RANGE);
     }
 
-    /**
-     * Get the death cycle
-     * @return The death cycle
-     */
+    @Override
     protected int getDeathCycle() {
         return this.deathCycle;
     }
 
-    /**
-     * Get the breed cycle
-     * @return The breed cycle
-     */
+    @Override
     protected int getBreedingCycle() {
         return this.breedingCycle;
     }
 
-    /**
-     * Return the display the fish
-     * @return The display the fish
-     */
+    @Override
     public String toString() {
         return "*";
     }

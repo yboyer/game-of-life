@@ -2,12 +2,13 @@ package model;
 
 import java.util.ArrayList;
 
-
+/**
+ * Represents a fish.
+ *
+ * He can move, breed and die of old age.
+ */
 abstract class Fish extends Cell {
-    public static int ACT_OK = 0;
-    public static int ACT_DEAD = -1;
-    public static int ACT_BREED = 1;
-    protected int age;
+    private int age;
 
     /**
      * The fish constructor
@@ -70,7 +71,6 @@ abstract class Fish extends Cell {
     /**
      * Move action
      * @param sea The sea to move
-     * @return True if TODO
      */
     protected void move(Sea sea) {
         ArrayList<Water> cells = getNearbyWaterCells(sea);
@@ -85,7 +85,6 @@ abstract class Fish extends Cell {
     /**
      * Breed action
      * @param sea The sea to breed
-     * @return True if the breed action is a success
      */
     protected void breed(Sea sea) {
         ArrayList<Water> cells = getNearbyWaterCells(sea);
@@ -107,7 +106,6 @@ abstract class Fish extends Cell {
     /**
      * ..and Action !
      * @param sea The sea to interact with
-     * @return The status code of the fish
      */
     public void act(Sea sea) {
         // Kill the fish if it deserves to die
@@ -132,7 +130,7 @@ abstract class Fish extends Cell {
     /**
      * Filter the input list to retrieve the water cells
      * -Fish don't care about other fish-
-     * @param cells The list to filter
+     * @param sea The sea to filter
      * @return The list of water cells filtered from the input list
      */
     protected ArrayList<Water> getNearbyWaterCells(Sea sea) {
@@ -162,5 +160,6 @@ abstract class Fish extends Cell {
      * Return the display the fish
      * @return The display the fish
      */
+    @Override
     public abstract String toString();
 }

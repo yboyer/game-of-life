@@ -2,7 +2,12 @@ package model;
 
 import java.util.ArrayList;
 
-
+/**
+ * Represents a sea.
+ *
+ * The sea is a grid of cells which may contain fishies and.. water.
+ * @see model.Cell
+ */
 class Sea {
     private Cell[][] grid;
     private ArrayList<Fish> fishies;
@@ -133,7 +138,7 @@ class Sea {
     /**
      * Transpose two cells
      * @param c1 The first cell
-     * @param c1 The second cell
+     * @param c2 The second cell
      */
     public void transposeCells(Cell c1, Cell c2) {
         int c1Y = c1.getY();
@@ -233,6 +238,7 @@ class Sea {
      * Return the grid as a string
      * @return The grid
      */
+    @Override
     public String toString() {
         String display = "";
 

@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * Creates a sea and add life into it.
+ */
 public class GameOfLife {
     private static Sea sea;
 
