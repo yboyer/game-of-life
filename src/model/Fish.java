@@ -104,6 +104,21 @@ abstract class Fish extends Cell {
     }
 
     /**
+     * Get the age of the fish
+     * @return The age
+     */
+    protected int getAge() {
+        return this.age;
+    }
+
+    /**
+     * Grow action
+     */
+    protected void grow() {
+        this.age++;
+    }
+
+    /**
      * ..and Action !
      * @param sea The sea to interact with
      */
@@ -124,7 +139,7 @@ abstract class Fish extends Cell {
             sea.kill(this);
         }
 
-        age++;
+        grow();
     }
 
     /**
