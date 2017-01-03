@@ -12,13 +12,13 @@ import java.util.ArrayList;
  * @see model.AdultShark
  */
 class Shark extends Fish implements FishStateContext {
-    private static int DEATHCYCLE = 20;
-    private static int DEATHCYCLE_RANGE = DEATHCYCLE / 3;
-    private static int BREEDINGCYCLE = 4;
-    private static int BREEDINGCYCLE_RANGE = BREEDINGCYCLE / 3;
-    private static int FAMINELIMIT = 4;
-    protected int breedingCycle;
-    protected int deathCycle;
+    private static final int DEATHCYCLE = 20;
+    private static final int DEATHCYCLE_RANGE = DEATHCYCLE / 3;
+    private static final int BREEDINGCYCLE = 4;
+    private static final int BREEDINGCYCLE_RANGE = BREEDINGCYCLE / 3;
+    private static final int FAMINELIMIT = 4;
+    private int breedingCycle;
+    private int deathCycle;
     private int lastEatCycle;
     private FishState state;
 

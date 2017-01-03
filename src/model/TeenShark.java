@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * water cell.
  */
 class TeenShark implements FishState {
-    private static int AGE_STEP = 4;
+    private static final int AGE_STEP = 4;
 
     @Override
     public void move(Shark shark, Sea sea) {

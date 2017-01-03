@@ -6,12 +6,12 @@ package model;
  * He can be eaten by a {@link model.Shark shark}.
  */
 class Pilchard extends Fish {
-    private static int DEATHCYCLE = 20;
-    private static int DEATHCYCLE_RANGE = DEATHCYCLE / 3;
-    private static int BREEDINGCYCLE = 2;
-    private static int BREEDINGCYCLE_RANGE = BREEDINGCYCLE / 3;
-    protected int breedingCycle;
-    protected int deathCycle;
+    private static final int DEATHCYCLE = 20;
+    private static final int DEATHCYCLE_RANGE = DEATHCYCLE / 3;
+    private static final int BREEDINGCYCLE = 2;
+    private static final int BREEDINGCYCLE_RANGE = BREEDINGCYCLE / 3;
+    private int breedingCycle;
+    private int deathCycle;
 
     /**
      * The pilchard constructor
