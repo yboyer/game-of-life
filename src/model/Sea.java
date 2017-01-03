@@ -206,10 +206,10 @@ class Sea {
         int x = fish.getX();
         this.grid[y][x] = new Water(y, x);
 
-        this.fishies.remove(fish);
         if (this.fishies.indexOf(fish) <= this.fishiesIndex) {
             this.fishiesIndex--;
         }
+        this.fishies.remove(fish);
 
         System.out.println("   Death on {" + y + ", " + x + "} (" + fish + ")");
     }
