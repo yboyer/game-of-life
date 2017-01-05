@@ -21,9 +21,7 @@ class TeenShark implements FishState {
         for (Cell cell : cells) {
             if (cell instanceof Pilchard) {
                 System.out.println("  *eaten by {" + shark.getY() + ", " + shark.getX() + "}*" + " as o");
-                sea.transposeCells(shark, cell);
-                sea.kill((Fish) cell);
-                shark.resetLastEatCycle();
+                shark.eat((Pilchard) cell, sea);
                 return;
             }
         }

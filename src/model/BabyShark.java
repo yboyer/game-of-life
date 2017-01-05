@@ -22,12 +22,11 @@ class BabyShark implements FishState {
             int index = (int) (Math.random() * cells.size());
             Cell destCell = cells.get(index);
 
-            sea.transposeCells(shark, destCell);
-
             if (destCell instanceof Pilchard) {
                 System.out.println("  *eaten by {" + shark.getY() + ", " + shark.getX() + "}*" + " as °");
-                sea.kill((Fish) destCell);
-                shark.resetLastEatCycle();
+                shark.eat((Pilchard) destCell, sea);
+            } else {
+                sea.transposeCells(shark, destCell);
             }
         }
     }

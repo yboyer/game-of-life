@@ -79,6 +79,17 @@ class Shark extends Fish implements FishStateContext {
     }
 
     /**
+     * Eat a pilchard
+     * @param pilchard The pilchard to eat
+     * @param sea The sea to interact with
+     */
+    protected void eat(Pilchard pilchard, Sea sea) {
+        sea.transposeCells(this, pilchard);
+        sea.kill((Fish) pilchard);
+        resetLastEatCycle();
+    }
+
+    /**
      * Reset the last time he eats
      */
     protected void resetLastEatCycle() {
