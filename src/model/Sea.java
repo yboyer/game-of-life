@@ -21,9 +21,9 @@ class Sea {
      * @param width Width of the sea
      * @param nbSharks Count of sharks to add
      * @param nbPilchards Count of pilchards to add
-     * @throws Exception If the number of fish to add is greater than the grid size
+     * @throws RuntimeException If the number of fish to add is greater than the grid size
      */
-    public Sea(int height, int width, int nbSharks, int nbPilchards) throws Exception {
+    public Sea(int height, int width, int nbSharks, int nbPilchards) throws RuntimeException {
         this(height, width);
 
         populate(nbSharks, nbPilchards);
@@ -66,10 +66,7 @@ class Sea {
      * Consctructor with default values
      */
     public Sea() {
-        this(500, 500);
-        try {
-            populate(20, 10);
-        } catch (Exception e) {}
+        this(500, 500, 20, 10);
     }
 
     /**
@@ -93,11 +90,11 @@ class Sea {
      * @param nbSharks Number of sharks
      * @param nbPilchards Number of pilchards
      */
-    public void populate(int nbSharks, int nbPilchards) throws Exception {
+    public void populate(int nbSharks, int nbPilchards) throws RuntimeException {
         int nbFish = nbSharks + nbPilchards;
         int nbCell = this.width * this.height;
         if (nbFish >= nbCell) {
-            throw new Exception("Too many fish (" + nbFish + ") to add on the sea (" + nbCell + ")");
+            throw new RuntimeException("Too many fish (" + nbFish + ") to add on the sea (" + nbCell + ")");
         }
         int i, x, y;
 
