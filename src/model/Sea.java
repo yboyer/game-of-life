@@ -1,5 +1,6 @@
 package model;
 
+import java.util.List;
 import java.util.ArrayList;
 
 /**
@@ -10,7 +11,7 @@ import java.util.ArrayList;
  */
 class Sea {
     private Cell[][] grid;
-    private ArrayList<Fish> fishies;
+    private List<Fish> fishies;
     private int height;
     private int width;
     private int fishiesIndex;

@@ -1,6 +1,6 @@
 package model;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents a shark.
@@ -109,7 +109,7 @@ class Shark extends Fish implements FishStateContext {
      * @param cells The cells to filter
      * @return The filtered list
      */
-    protected ArrayList<Cell> getReachableCells(ArrayList<Cell> cells) {
+    protected List<Cell> getReachableCells(List<Cell> cells) {
         // Remove sharks of the list
         for (int c = cells.size() - 1; c >= 0; c--) {
             if (cells.get(c) instanceof Shark) {

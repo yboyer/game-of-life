@@ -1,5 +1,6 @@
 package model;
 
+import java.util.List;
 import java.util.ArrayList;
 
 /**
@@ -73,7 +74,7 @@ abstract class Fish extends Cell {
      * @param sea The sea to move
      */
     protected void move(Sea sea) {
-        ArrayList<Water> cells = getNearbyWaterCells(sea);
+        List<Water> cells = getNearbyWaterCells(sea);
 
         // Move to a nearby water cell
         if (!cells.isEmpty()) {
@@ -87,7 +88,7 @@ abstract class Fish extends Cell {
      * @param sea The sea to breed
      */
     protected void breed(Sea sea) {
-        ArrayList<Water> cells = getNearbyWaterCells(sea);
+        List<Water> cells = getNearbyWaterCells(sea);
 
         if (!cells.isEmpty()) {
             if (age == getBreedingCycle()) {
@@ -148,9 +149,9 @@ abstract class Fish extends Cell {
      * @param sea The sea to filter
      * @return The list of water cells filtered from the input list
      */
-    protected ArrayList<Water> getNearbyWaterCells(Sea sea) {
-        ArrayList<Cell> cells = sea.getNearbyCells(this);
-        ArrayList<Water> waterCells = new ArrayList<Water>();
+    protected List<Water> getNearbyWaterCells(Sea sea) {
+        List<Cell> cells = sea.getNearbyCells(this);
+        List<Water> waterCells = new ArrayList<Water>();
         for (Cell c : cells) {
             if (c instanceof Water) {
                 waterCells.add((Water) c);

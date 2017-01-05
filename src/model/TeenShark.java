@@ -1,6 +1,6 @@
 package model;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents a state of shark. The teen shark.
@@ -13,7 +13,7 @@ class TeenShark implements FishState {
 
     @Override
     public void move(Shark shark, Sea sea) {
-        ArrayList<Cell> cells = sea.getNearbyCells(shark);
+        List<Cell> cells = sea.getNearbyCells(shark);
         cells = shark.getReachableCells(cells);
 
         // Check if there is a pilchard around him

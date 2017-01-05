@@ -1,6 +1,6 @@
 package model;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents a state of shark. The baby shark.
@@ -13,7 +13,7 @@ class BabyShark implements FishState {
 
     @Override
     public void move(Shark shark, Sea sea) {
-        ArrayList<Cell> cells = sea.getNearbyCells(shark);
+        List<Cell> cells = sea.getNearbyCells(shark);
         cells = shark.getReachableCells(cells);
 
         // Move to a random cell
