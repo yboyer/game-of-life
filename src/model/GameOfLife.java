@@ -80,7 +80,11 @@ public class GameOfLife {
             sea = new Sea(height, width, nbShark, nbPilchard);
         }
 
-        startLife(nbCycle != null ? nbCycle : 40);
+        if (nbCycle != null && nbCycle == 0) {
+            startLife();
+        } else {
+            startLife(nbCycle != null ? nbCycle : 40);
+        }
     }
 
     /**
@@ -122,8 +126,21 @@ public class GameOfLife {
         Cell[][] grid = new Cell[height][width];
 
         grid[0][0] = new Pilchard(0, 0);
-        grid[0][1] = new Shark(0, 1);
-        grid[1][0] = new Shark(1, 0);
+        grid[0][1] = new Pilchard(0, 1);
+        grid[0][2] = new Pilchard(0, 2);
+        grid[1][0] = new Pilchard(1, 0);
+        grid[1][1] = new Pilchard(1, 1);
+        grid[1][2] = new Pilchard(1, 2);
+        grid[2][0] = new Pilchard(2, 0);
+        grid[2][1] = new Pilchard(2, 1);
+        grid[2][2] = new Pilchard(2, 2);
+        grid[0][8] = new Shark(0, 8);
+        grid[1][8] = new Shark(1, 8);
+        grid[2][8] = new Shark(2, 8);
+        grid[9][26] = new Pilchard(9, 26);
+        grid[9][27] = new Pilchard(9, 27);
+        grid[10][26] = new Pilchard(10, 26);
+        grid[10][27] = new Pilchard(10, 27);
 
         int x, y;
         for (int i = (height * width) - 1; i >= 0; i--) {
