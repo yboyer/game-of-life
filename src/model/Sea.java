@@ -105,6 +105,7 @@ class Sea {
             y = i % getHeight();
             x = i / getHeight();
             this.grid[y][x] = new Pilchard(y, x);
+            this.fishies.add((Fish) this.grid[y][x]);
         }
 
         // Add sharks
@@ -112,6 +113,7 @@ class Sea {
             y = i % getHeight();
             x = i / getHeight();
             this.grid[y][x] = new Shark(y, x);
+            this.fishies.add((Fish) this.grid[y][x]);
         }
 
         // Add water
