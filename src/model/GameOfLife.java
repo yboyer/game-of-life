@@ -28,6 +28,11 @@ public class GameOfLife {
                 useDefault = true;
             }
 
+            if (args[a].equals("--help") || args[a].equals("-h")) {
+                printUsage();
+                System.exit(0);
+            }
+
             matcher = Pattern.compile("^--pilchards=(\\d+)$").matcher(args[a]);
             if (matcher.find()) {
                 nbPilchard = Integer.parseInt(matcher.group(1));
@@ -56,19 +61,19 @@ public class GameOfLife {
 
         // All or none
         if ((height == null || width == null) && (height != null || width != null)) {
-            printUsage();
+            exitUsage();
         }
 
         // All or none
         if ((nbPilchard == null || nbShark == null) && (nbPilchard != null || nbShark != null)) {
-            printUsage();
+            exitUsage();
         }
 
         if (useDefault) {
             sea = getDefault();
         } else if ((height == null && nbPilchard != null) || (height != null && nbPilchard == null)) {
             // The four data need to be set
-            printUsage();
+            exitUsage();
         } else if (height == null && nbPilchard == null) {
             sea = new Sea();
         } else {
@@ -83,9 +88,26 @@ public class GameOfLife {
      */
     private static void printUsage() {
         String usage = "\n";
-        usage += "Usage: appname [options]\n";
+        usage += "Usage: [options]\n";
+        usage += "\n";
+        usage += "List of options:\n";
+        usage += "  --debug         Debug all actions\n";
+        usage += "  --default       Use the default values\n";
+        usage += "\n";
+        usage += " The sea values (all of them are optionnal but if one is set, all are needed)\n";
+        usage += "  --height=N      The height of the sea\n";
+        usage += "  --width=N       The width of the sea\n";
+        usage += "  --sharks=N      The number of shark to add\n";
+        usage += "  --pilchards=N   The number of Pilchard to add";
 
         System.out.println(usage);
+    }
+
+    /**
+     * Print usage and exit the app with an error code
+     */
+    private static void exitUsage() {
+        printUsage();
         System.exit(-1);
     }
 
