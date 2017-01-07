@@ -126,7 +126,9 @@ abstract class Fish extends Cell {
     public void act(Sea sea) {
         // Kill the fish if it deserves to die
         if (isAgeDeath()) {
-            System.out.println("   *age*");
+            if (GameOfLife.debug){
+                System.out.println("     (age)");
+            }
             sea.kill(this);
             return; // Too old to breed and move anyway..
         }
@@ -135,8 +137,10 @@ abstract class Fish extends Cell {
 
         move(sea);
 
-        if (isFamineDeath()) {
-            System.out.println("   *famine*");
+            if (isFamineDeath()) {
+                if (GameOfLife.debug){
+                    System.out.println("     (famine)");
+                }
             sea.kill(this);
             return; // Too dead to grow anyway..
         }

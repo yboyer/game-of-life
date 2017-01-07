@@ -1,25 +1,107 @@
 package model;
 
+import java.util.regex.*;
+
 /**
  * Creates a sea and add life into it.
  */
 public class GameOfLife {
     private static Sea sea;
+    protected static boolean debug = false;
 
     public static void main(String[] args) {
-        // try { sea = new Sea(10, 10, 3, 2); } catch (Exception e) { }
-        sea = getDefault();
-        startLife(500);
+        boolean useDefault = false;
+        Integer nbPilchard = null;
+        Integer nbShark = null;
+        Integer height = null;
+        Integer width = null;
+        Integer nbCycle = null;
+
+        for (int a = 0; a < args.length; a++) {
+            Matcher matcher;
+
+            if (args[a].equals("--debug")) {
+                debug = true;
+            }
+
+            if (args[a].equals("--default")) {
+                useDefault = true;
+            }
+
+            matcher = Pattern.compile("^--pilchards=(\\d+)$").matcher(args[a]);
+            if (matcher.find()) {
+                nbPilchard = Integer.parseInt(matcher.group(1));
+            }
+
+            matcher = Pattern.compile("^--sharks=(\\d+)$").matcher(args[a]);
+            if (matcher.find()) {
+                nbShark = Integer.parseInt(matcher.group(1));
+            }
+
+            matcher = Pattern.compile("^--height=(\\d+)$").matcher(args[a]);
+            if (matcher.find()) {
+                height = Integer.parseInt(matcher.group(1));
+            }
+
+            matcher = Pattern.compile("^--width=(\\d+)$").matcher(args[a]);
+            if (matcher.find()) {
+                height = Integer.parseInt(matcher.group(1));
+            }
+
+            matcher = Pattern.compile("^--cycles=(\\d+)$").matcher(args[a]);
+            if (matcher.find()) {
+                nbCycle = Integer.parseInt(matcher.group(1));
+            }
+        }
+
+        // All or none
+        if ((height == null || width == null) && (height != null || width != null)) {
+            printUsage();
+        }
+
+        // All or none
+        if ((nbPilchard == null || nbShark == null) && (nbPilchard != null || nbShark != null)) {
+            printUsage();
+        }
+
+        if (useDefault) {
+            sea = getDefault();
+        } else if ((height == null && nbPilchard != null) || (height != null && nbPilchard == null)) {
+            // The four data need to be set
+            printUsage();
+        } else if (height == null && nbPilchard == null) {
+            sea = new Sea();
+        } else {
+            sea = new Sea(height, width, nbShark, nbPilchard);
+        }
+
+        startLife(nbCycle != null ? nbCycle : 40);
     }
 
+    /**
+     * Print usage and exit the app with an error code
+     */
+    private static void printUsage() {
+        String usage = "\n";
+        usage += "Usage: appname [options]\n";
+
+        System.out.println(usage);
+        System.exit(-1);
+    }
+
+    /**
+     * Create a 28x11 sea with fixed fish positions
+     * @return The default sea
+     */
     private static Sea getDefault() {
-        int height = 5;
-        int width = 10;
+        int height = 11;
+        int width = 28;
 
         Cell[][] grid = new Cell[height][width];
 
         grid[0][0] = new Pilchard(0, 0);
         grid[0][1] = new Shark(0, 1);
+        grid[1][0] = new Shark(1, 0);
 
         int x, y;
         for (int i = (height * width) - 1; i >= 0; i--) {

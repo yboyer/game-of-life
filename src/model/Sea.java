@@ -148,6 +148,10 @@ class Sea {
         int c2X = c2.getX();
         this.grid[c2Y][c2X] = c1.setY(c2Y).setX(c2X);
         this.grid[c1Y][c1X] = c2.setY(c1Y).setX(c1X);
+
+        if (GameOfLife.debug) {
+            System.out.println("     Move from " + c2.toFormatedCoordinates() + " to " + c1.toFormatedCoordinates());
+        }
     }
 
     /**
@@ -237,7 +241,9 @@ class Sea {
         }
         this.fishies.remove(fish);
 
-        System.out.println("   Death on {" + y + ", " + x + "} (" + fish + ")");
+        if (GameOfLife.debug){
+            System.out.println("      Death on " + fish.toFormatedCoordinates() + " (" + fish + ")");
+        }
     }
 
     /**
@@ -258,7 +264,9 @@ class Sea {
         // Pass the new born fish
         this.fishiesIndex++;
 
-        System.out.println("New born on {" + y + ", " + x + "} (" + fish + ")");
+        if (GameOfLife.debug){
+            System.out.println("   New born on " + fish.toFormatedCoordinates() + " (" + fish + ")");
+        }
     }
 
     /**

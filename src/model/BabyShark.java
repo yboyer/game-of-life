@@ -23,7 +23,9 @@ class BabyShark implements FishState {
 
             // If this cell contains a pilchard, he eats him
             if (destCell instanceof Pilchard) {
-                System.out.println("  *eaten by {" + shark.getY() + ", " + shark.getX() + "}*" + " as °");
+                if (GameOfLife.debug){
+                    System.out.println("     (eaten by " + shark.toFormatedCoordinates() + " as a baby");
+                }
                 shark.eat((Pilchard) destCell, sea);
             } else {
                 sea.transposeCells(shark, destCell);
@@ -34,7 +36,9 @@ class BabyShark implements FishState {
     @Override
     public void grow(FishStateContext fish) {
         if (fish.getAge() == AGE_STEP) {
-            System.out.println("Update to teen");
+            if (GameOfLife.debug){
+                System.out.println("Update to teen");
+            }
             fish.setState(new TeenShark());
         }
     }
