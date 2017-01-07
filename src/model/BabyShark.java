@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Represents a state of shark. The baby shark.
  *
- * He moves to a random nearby cell. If this cell contains a pilchard, he eats
+ * He moves to random nearby cells. If this cell contains a pilchard, he eats
  * him.
  */
 class BabyShark implements FishState {
@@ -17,11 +17,11 @@ class BabyShark implements FishState {
         cells = shark.getReachableCells(cells);
 
         // Move to a random cell
-        // If this cell contains a pilchard, the baby shark eats him
         if (!cells.isEmpty()) {
             int index = (int) (Math.random() * cells.size());
             Cell destCell = cells.get(index);
 
+            // If this cell contains a pilchard, he eats him
             if (destCell instanceof Pilchard) {
                 System.out.println("  *eaten by {" + shark.getY() + ", " + shark.getX() + "}*" + " as °");
                 shark.eat((Pilchard) destCell, sea);

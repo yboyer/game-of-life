@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * Represents a fish.
  *
- * He can move, breed and die of old age.
+ * He can move, breed and die of old age and famine.
  */
 abstract class Fish extends Cell {
     private int age;
@@ -33,26 +33,32 @@ abstract class Fish extends Cell {
     protected abstract int getBreedingCycle();
 
     /**
-     * Return a baby fish with the current fish type
+     * Give birth of a baby fish to the given coordinates
      * @param y The Y coordinate
      * @param x The X coordinate
-     * @return A baby fish
+     * @return A baby fish with the current fish type
      */
     protected Fish giveBirth(int y, int x) {
         try {
+            // Get the class of the current fish,
+            // its constructor
+            // and create a new instance of the fish
             return this.getClass()
                 .getConstructor(int.class, int.class)
                 .newInstance(y, x);
         } catch (Exception e) {
-            // NoSuchMethodException
-            // InstantiationException
+            // Catchable exceptions:
+            //   NoSuchMethodException
+            //   InstantiationException
+            // This block can't be reached because each fishies have an
+            // (int, int) constructor.
             return null;
         }
     }
 
     /**
-     * Check if it needs to die because of its age
-     * @return True if it need to die
+     * Check if he needs to die because of its age
+     * @return True if he need to die
      */
     protected boolean isAgeDeath() {
         if (this.age == getDeathCycle()) {
@@ -62,8 +68,8 @@ abstract class Fish extends Cell {
     }
 
     /**
-     * Check if it needs to die because of its famine
-     * @return True if it need to die
+     * Check if he needs to die because of its famine
+     * @return True if he needs to die
      */
     protected boolean isFamineDeath() {
         return false;
@@ -71,7 +77,7 @@ abstract class Fish extends Cell {
 
     /**
      * Move action
-     * @param sea The sea to move
+     * @param sea The sea to interact with
      */
     protected void move(Sea sea) {
         List<Water> cells = getNearbyWaterCells(sea);
@@ -105,7 +111,7 @@ abstract class Fish extends Cell {
     }
 
     /**
-     * Get the age of the fish
+     * Get the age
      * @return The age
      */
     protected int getAge() {
@@ -173,8 +179,8 @@ abstract class Fish extends Cell {
     }
 
     /**
-     * Return the display the fish
-     * @return The display the fish
+     * Return a display
+     * @return A display
      */
     @Override
     public abstract String toString();

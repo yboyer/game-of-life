@@ -18,10 +18,10 @@ class Sea {
 
     /**
      * Generate and populate the sea
-     * @param height Height of the sea
-     * @param width Width of the sea
-     * @param nbSharks Count of sharks to add
-     * @param nbPilchards Count of pilchards to add
+     * @param height The height of the sea
+     * @param width The width of the sea
+     * @param nbSharks The number of sharks to add
+     * @param nbPilchards The number of pilchards to add
      * @throws RuntimeException If the number of fish to add is greater than the grid size
      */
     public Sea(int height, int width, int nbSharks, int nbPilchards) throws RuntimeException {
@@ -32,8 +32,8 @@ class Sea {
 
     /**
      * Generate the sea
-     * @param height Height of the sea
-     * @param width Width of the sea
+     * @param height The height of the sea
+     * @param width The width of the sea
      */
     public Sea(int height, int width) {
         this.height = height;
@@ -71,16 +71,16 @@ class Sea {
     }
 
     /**
-     * Get the height of the sea
-     * @return The height of the sea
+     * Get the height
+     * @return The height
      */
     public int getWidth() {
         return this.width;
     }
 
     /**
-     * Get the width of the sea
-     * @return The width of the sea
+     * Get the width
+     * @return The width
      */
     public int getHeight() {
         return this.height;
@@ -227,6 +227,8 @@ class Sea {
         int x = fish.getX();
         this.grid[y][x] = new Water(y, x);
 
+        // Only decrease the fishies index if the dead fish is before it
+        // -> for iteration process
         if (this.fishies.indexOf(fish) <= this.fishiesIndex) {
             this.fishiesIndex--;
         }
@@ -250,6 +252,7 @@ class Sea {
         // to prevent it to directly move after its born
         int parentFishIndex = this.fishies.indexOf(parentFish) + 1;
         this.fishies.add(parentFishIndex, fish);
+        // Pass the new born fish
         this.fishiesIndex++;
 
         System.out.println("New born on {" + y + ", " + x + "} (" + fish + ")");

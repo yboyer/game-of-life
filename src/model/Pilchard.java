@@ -3,7 +3,7 @@ package model;
 /**
  * Represents a pilchard.
  *
- * He can be eaten by a {@link model.Shark shark}.
+ * A sweet and simple fish which can be eaten by a {@link model.Shark shark}.
  */
 class Pilchard extends Fish {
     private static final int DEATHCYCLE = 20;

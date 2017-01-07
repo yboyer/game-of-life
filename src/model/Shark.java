@@ -5,7 +5,8 @@ import java.util.List;
 /**
  * Represents a shark.
  *
- * He needs to eat {@link model.Pilchard pilchards} to survive ; otherwise, he starves.
+ * He needs to eat {@link model.Pilchard pilchards} to survive ;
+ * otherwise,he starves.
  * He have three states: baby, teen and adult.
  * @see model.BabyShark
  * @see model.TeenShark
