@@ -37,7 +37,7 @@ class TeenShark implements FishState {
     public void grow(FishStateContext fish) {
         if (fish.getAge() == TeenShark.AGE_STEP) {
             System.out.println("Update to adult");
-            // fish.setState(new AdultShark());
+            fish.setState(new AdultShark());
         }
     }
 }

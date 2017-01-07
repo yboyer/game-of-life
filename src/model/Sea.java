@@ -161,12 +161,22 @@ class Sea {
      * @param cell The cell to inspect
      * @return List of the nearby cells
      */
-    public ArrayList<Cell> getNearbyCells(Cell cell) {
-        ArrayList<Cell> cells = new ArrayList<Cell>();
-        int minY = cell.getY() - 1;
-        int minX = cell.getX() - 1;
-        int maxY = cell.getY() + 1;
-        int maxX = cell.getX() + 1;
+    public List<Cell> getNearbyCells(Cell cell) {
+        return getCellsByRadius(cell, 1);
+    }
+
+    /**
+     * Return a list of cells at a given radius of a given cell
+     * @param cell The cell to inspect
+     * @param radius The radius to iterate
+     * @return List of the nearby cells
+     */
+    public List<Cell> getCellsByRadius(Cell cell, int radius) {
+        List<Cell> cells = new ArrayList<Cell>();
+        int minY = cell.getY() - radius;
+        int minX = cell.getX() - radius;
+        int maxY = cell.getY() + radius;
+        int maxX = cell.getX() + radius;
 
         // Set the values into the sea bounds
         if (minX < 0) {
@@ -185,13 +195,26 @@ class Sea {
         // Loop to nearby cells
         for (int y = minY; y <= maxY; y++) {
             for (int x = minX; x <= maxX; x++) {
-                if (y != cell.getY() || x != cell.getX()) {
+                if ((y == minY || y == maxY) || (x == minX || x == maxX)) {
                     cells.add(this.grid[y][x]);
                 }
             }
         }
 
         return cells;
+    }
+
+    /**
+     * Get a cell from coordinates
+     * @param int y The Y coordinate
+     * @param int x The X coordinate
+     * @return The cell if it exists
+     */
+    public Cell getCell(int y, int x) {
+        if (y < 0 || y >= grid.length || x < 0 || x >= grid[0].length) {
+            return null;
+        }
+        return grid[y][x];
     }
 
     /**

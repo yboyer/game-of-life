@@ -20,7 +20,7 @@ abstract class Cell {
     }
 
     /**
-     * Set the x coordinate
+     * Set the X coordinate
      * @param x The X coordinate
      * @return The current cell
      */
@@ -30,7 +30,7 @@ abstract class Cell {
     }
 
     /**
-     * Get the x coordinate
+     * Get the X coordinate
      * @return The x coordinate
      */
     public int getX() {
@@ -38,7 +38,7 @@ abstract class Cell {
     }
 
     /**
-     * Set the y coordinate
+     * Set the Y coordinate
      * @param y The Y coordinate
      * @return The current cell
      */
@@ -48,10 +48,18 @@ abstract class Cell {
     }
 
     /**
-     * Get the y coordinate
-     * @return The y coordinate
+     * Get the Y coordinate
+     * @return The Y coordinate
      */
     public int getY() {
         return this.y;
+    }
+
+    /**
+     * Get a formated string of the coordinates
+     * @return The formated coordinates
+     */
+    public String toFormatedCoordinates() {
+        return "{" + getY() + "," + getX() + "}";
     }
 }
