@@ -64,10 +64,11 @@ class Sea {
     }
 
     /**
-     * Consctructor with default values
+     * Constructor with default values
+     * A 50x22 sea with 10 sharks and 30 pilchards.
      */
     public Sea() {
-        this(500, 500, 20, 10);
+        this(22, 50, 10, 30);
     }
 
     /**
@@ -151,8 +152,8 @@ class Sea {
      * Apply a cycle for the whole sea
      */
     public void applyCycle() {
-        for (this.fishiesIndex = 0; this.fishiesIndex < fishies.size(); this.fishiesIndex++) {
-            fishies.get(this.fishiesIndex).act(this);
+        for (this.fishiesIndex = 0; this.fishiesIndex < this.fishies.size(); this.fishiesIndex++) {
+            this.fishies.get(this.fishiesIndex).act(this);
         }
     }
 

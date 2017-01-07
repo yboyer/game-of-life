@@ -72,7 +72,7 @@ class Shark extends Fish implements FishStateContext {
 
     @Override
     protected boolean isFamineDeath() {
-        if (this.getLastEatCycle() == FAMINELIMIT) {
+        if (this.lastEatCycle == FAMINELIMIT) {
             return true;
         }
         this.lastEatCycle++;
@@ -95,14 +95,6 @@ class Shark extends Fish implements FishStateContext {
      */
     protected void resetLastEatCycle() {
         this.lastEatCycle = 0;
-    }
-
-    /**
-     * Get the last time he eats
-     * @return The last eat cycle
-     */
-    protected int getLastEatCycle() {
-        return lastEatCycle;
     }
 
     /**

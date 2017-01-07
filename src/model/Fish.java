@@ -61,19 +61,14 @@ abstract class Fish extends Cell {
      * @return True if he need to die
      */
     protected boolean isAgeDeath() {
-        if (this.age == getDeathCycle()) {
-            return true;
-        }
-        return false;
+        return this.age == getDeathCycle();
     }
 
     /**
      * Check if he needs to die because of its famine
      * @return True if he needs to die
      */
-    protected boolean isFamineDeath() {
-        return false;
-    }
+    protected abstract boolean isFamineDeath();
 
     /**
      * Move action
@@ -94,18 +89,17 @@ abstract class Fish extends Cell {
      * @param sea The sea to breed
      */
     protected void breed(Sea sea) {
-        List<Water> cells = getNearbyWaterCells(sea);
+        if (age == getBreedingCycle()) {
+            List<Water> cells = getNearbyWaterCells(sea);
 
-        if (!cells.isEmpty()) {
-            if (age == getBreedingCycle()) {
+            // Breed to a nearby water cell
+            if (!cells.isEmpty()) {
                 int breedIndex = (int) (Math.random() * cells.size());
                 Water waterCell = cells.get(breedIndex);
                 int y = waterCell.getY();
                 int x = waterCell.getX();
 
                 sea.spawn(giveBirth(y, x), this);
-
-                cells.remove(waterCell);
             }
         }
     }
@@ -144,6 +138,7 @@ abstract class Fish extends Cell {
         if (isFamineDeath()) {
             System.out.println("   *famine*");
             sea.kill(this);
+            return; // Too dead to grow anyway..
         }
 
         grow();

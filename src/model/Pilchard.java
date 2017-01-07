@@ -36,6 +36,11 @@ class Pilchard extends Fish {
     }
 
     @Override
+    protected boolean isFamineDeath() {
+        return false;
+    }
+
+    @Override
     public String toString() {
         return "*";
     }
