@@ -50,7 +50,7 @@ public class GameOfLife {
 
             matcher = Pattern.compile("^--width=(\\d+)$").matcher(args[a]);
             if (matcher.find()) {
-                height = Integer.parseInt(matcher.group(1));
+                width = Integer.parseInt(matcher.group(1));
             }
 
             matcher = Pattern.compile("^--cycles=(\\d+)$").matcher(args[a]);
