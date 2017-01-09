@@ -146,6 +146,8 @@ class Sea {
         int c1X = c1.getX();
         int c2Y = c2.getY();
         int c2X = c2.getX();
+        // Override the destination cell for a possible transpose kills
+        c2 = getCell(c2Y, c2X);
         this.grid[c2Y][c2X] = c1.setY(c2Y).setX(c2X);
         this.grid[c1Y][c1X] = c2.setY(c1Y).setX(c1X);
 

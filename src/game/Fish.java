@@ -174,7 +174,8 @@ abstract class Fish extends Cell {
     public static int getCycleAverage(int cycle, int range) {
         int minCycle = cycle - range;
         int maxCycle = cycle + range;
-        return (int) (Math.random() * (maxCycle - minCycle)) + minCycle;
+        int average = (int) (Math.random() * (maxCycle - minCycle)) + minCycle;
+        return average != 0 ? average : 1;
     }
 
     /**

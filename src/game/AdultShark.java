@@ -34,10 +34,10 @@ class AdultShark implements FishState {
 
                 // If the nearby cell is a pilchard he eats him
                 if (nextCell instanceof Pilchard) {
-                    shark.eat((Pilchard) nextCell, sea);
                     if (GameOfLife.debug){
                         System.out.println("     (eaten by " + shark.toFormatedCoordinates() + " as an adult)");
                     }
+                    shark.eat((Pilchard) nextCell, sea);
                     return;
                 } else if (nextCell != null) {
                     // `nextCell` is a one-more-cell to cross between them him and the
@@ -78,7 +78,7 @@ class AdultShark implements FishState {
                 public boolean isValidPoint(int y, int x) {
                     Cell cell = sea.getCell(y, x);
 
-                    return cell != null && cell instanceof Water;
+                    return cell != null && (cell instanceof Water || cell instanceof Pilchard);
                 }
             });
         }
