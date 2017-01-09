@@ -1,4 +1,4 @@
-package model;
+package game;
 
 import java.util.List;
 import astar.*; // PathfinderContext, Pathfinder, Node
@@ -50,7 +50,7 @@ class AdultShark implements FishState {
                 // to the pilchard's position
                 if (GameOfLife.debug){
                     System.out.println("For " + shark.toFormatedCoordinates() +
-                        " to " + pilchard.toFormatedCoordinates() + " :" + e.getMessage());
+                        " to " + pilchard.toFormatedCoordinates() + ": " + e.getMessage());
                 }
             }
         }
@@ -77,10 +77,8 @@ class AdultShark implements FishState {
                 @Override
                 public boolean isValidPoint(int y, int x) {
                     Cell cell = sea.getCell(y, x);
-                    if (cell == null || cell instanceof Shark) {
-                        return false;
-                    }
-                    return true;
+
+                    return cell != null && cell instanceof Water;
                 }
             });
         }

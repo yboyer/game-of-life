@@ -1,4 +1,4 @@
-package model;
+package game;
 
 /**
  * Represents a fish state.

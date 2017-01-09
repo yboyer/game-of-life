@@ -1,4 +1,4 @@
-package model;
+package game;
 
 /**
  * Represents the context and list of methods for the use of fish states.

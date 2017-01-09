@@ -13,7 +13,7 @@
     <target name="build" depends="compile">
         <jar basedir="build" destfile="dist/GameOfLife.jar">
             <manifest>
-                <attribute name="Main-Class" value="model.GameOfLife"/>
+                <attribute name="Main-Class" value="game.GameOfLife"/>
             </manifest>
         </jar>
     </target>
