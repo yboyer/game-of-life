@@ -1,5 +1,6 @@
-package game;
+package entities;
 
+import game.GameOfLife;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -8,7 +9,7 @@ import java.util.ArrayList;
  *
  * He can move, breed and die of old age and famine.
  */
-abstract class Fish extends Cell {
+public abstract class Fish extends Cell {
     private int age;
 
     /**
@@ -137,10 +138,10 @@ abstract class Fish extends Cell {
 
         move(sea);
 
-            if (isFamineDeath()) {
-                if (GameOfLife.debug){
-                    System.out.println("     (famine)");
-                }
+        if (isFamineDeath()) {
+            if (GameOfLife.debug){
+                System.out.println("     (famine)");
+            }
             sea.kill(this);
             return; // Too dead to grow anyway..
         }
@@ -150,7 +151,7 @@ abstract class Fish extends Cell {
 
     /**
      * Filter the input list to retrieve the water cells
-     * -Fish don't care about other fish-
+     * -Fishies don't care about other fish-
      * @param sea The sea to filter
      * @return The list of water cells filtered from the input list
      */
@@ -178,10 +179,6 @@ abstract class Fish extends Cell {
         return average != 0 ? average : 1;
     }
 
-    /**
-     * Return a display
-     * @return A display
-     */
     @Override
     public abstract String toString();
 }

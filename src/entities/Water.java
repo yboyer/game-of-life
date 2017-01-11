@@ -1,9 +1,9 @@
-package game;
+package entities;
 
 /**
  * Represents a water cell.
  */
-class Water extends Cell {
+public class Water extends Cell {
     /**
      * The water constructor
      * @param y The Y coordinate

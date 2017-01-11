@@ -1,11 +1,11 @@
-package game;
+package states;
 
 /**
  * Represents the context and list of methods for the use of fish states.
  *
- * @see model.FishState
+ * @see states.FishState
  */
-interface FishStateContext {
+public interface FishStateContext {
     /**
      * Set a state
      * @param state The state to set

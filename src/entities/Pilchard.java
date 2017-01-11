@@ -1,14 +1,14 @@
-package game;
+package entities;
 
 /**
  * Represents a pilchard.
  *
- * A sweet and simple fish which can be eaten by a {@link model.Shark shark}.
+ * A sweet and simple fish which can be eaten by a {@link entities.Shark shark}.
  */
-class Pilchard extends Fish {
-    private static final int DEATHCYCLE = 20;
+public class Pilchard extends Fish {
+    private static final int DEATHCYCLE = 15;
     private static final int DEATHCYCLE_RANGE = DEATHCYCLE / 3;
-    private static final int BREEDINGCYCLE = 2;
+    private static final int BREEDINGCYCLE = 1;
     private static final int BREEDINGCYCLE_RANGE = BREEDINGCYCLE / 3;
     private int breedingCycle;
     private int deathCycle;

@@ -1,12 +1,15 @@
-package game;
+package states;
+
+import entities.Shark;
+import entities.Sea;
 
 /**
  * Represents a fish state.
  *
  * This state moves and grows.
- * @see model.FishStateContext
+ * @see states.FishStateContext
  */
-interface FishState {
+public interface FishState {
     /**
      * Move action
      * @param shark The shark to move

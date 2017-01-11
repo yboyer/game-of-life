@@ -1,7 +1,13 @@
-package game;
+package states;
 
 import java.util.List;
 import astar.*; // PathfinderContext, Pathfinder, Node
+import entities.Cell;
+import entities.Water;
+import entities.Pilchard;
+import entities.Shark;
+import entities.Sea;
+import game.GameOfLife;
 
 /**
  * Represents a state of shark. The adult shark.
@@ -10,7 +16,7 @@ import astar.*; // PathfinderContext, Pathfinder, Node
  * nearby water cell.
  * @see astar.Pathfinder
  */
-class AdultShark implements FishState {
+public class AdultShark implements FishState {
     private final int MAX_RANGE = 40;
     private Pathfinder pathfinder = null;
 

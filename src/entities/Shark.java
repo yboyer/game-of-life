@@ -1,23 +1,26 @@
-package game;
+package entities;
 
+import states.FishStateContext;
+import states.FishState;
+import states.BabyShark;
 import java.util.List;
 
 /**
  * Represents a shark.
  *
- * He needs to eat {@link model.Pilchard pilchards} to survive ;
+ * He needs to eat {@link entities.Pilchard pilchards} to survive ;
  * otherwise,he starves.
  * He have three states: baby, teen and adult.
- * @see model.BabyShark
- * @see model.TeenShark
- * @see model.AdultShark
+ * @see states.BabyShark
+ * @see states.TeenShark
+ * @see states.AdultShark
  */
-class Shark extends Fish implements FishStateContext {
-    private static final int DEATHCYCLE = 20;
+public class Shark extends Fish implements FishStateContext {
+    private static final int DEATHCYCLE = 40;
     private static final int DEATHCYCLE_RANGE = DEATHCYCLE / 3;
-    private static final int BREEDINGCYCLE = 4;
+    private static final int BREEDINGCYCLE = 7;
     private static final int BREEDINGCYCLE_RANGE = BREEDINGCYCLE / 3;
-    private static final int FAMINELIMIT = 4;
+    private static final int FAMINELIMIT = 5;
     private int breedingCycle;
     private int deathCycle;
     private int lastEatCycle;
@@ -84,7 +87,7 @@ class Shark extends Fish implements FishStateContext {
      * @param pilchard The pilchard to eat
      * @param sea The sea to interact with
      */
-    protected void eat(Pilchard pilchard, Sea sea) {
+    public void eat(Pilchard pilchard, Sea sea) {
         sea.kill((Fish) pilchard);
         sea.transposeCells(this, pilchard);
         resetLastEatCycle();
@@ -102,7 +105,7 @@ class Shark extends Fish implements FishStateContext {
      * @param cells The cells to filter
      * @return The filtered list
      */
-    protected List<Cell> getReachableCells(List<Cell> cells) {
+    public List<Cell> getReachableCells(List<Cell> cells) {
         // Remove sharks of the list
         for (int c = cells.size() - 1; c >= 0; c--) {
             if (cells.get(c) instanceof Shark) {

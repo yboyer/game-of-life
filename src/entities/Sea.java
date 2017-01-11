@@ -1,5 +1,6 @@
-package game;
+package entities;
 
+import game.GameOfLife;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -7,9 +8,9 @@ import java.util.ArrayList;
  * Represents a sea.
  *
  * The sea is a grid of cells which may contain fishies and.. water.
- * @see model.Cell
+ * @see entities.Cell
  */
-class Sea {
+public class Sea {
     private Cell[][] grid;
     private List<Fish> fishies;
     private int height;
@@ -68,7 +69,7 @@ class Sea {
      * A 50x22 sea with 10 sharks and 30 pilchards.
      */
     public Sea() {
-        this(22, 50, 10, 30);
+        this(15, 17, 5, 60);
     }
 
     /**
@@ -215,8 +216,8 @@ class Sea {
 
     /**
      * Get a cell from coordinates
-     * @param int y The Y coordinate
-     * @param int x The X coordinate
+     * @param y The Y coordinate
+     * @param x The X coordinate
      * @return The cell if it exists
      */
     public Cell getCell(int y, int x) {
@@ -281,7 +282,7 @@ class Sea {
 
         for (int y = 0; y < getHeight(); y++) {
             for (int x = 0; x < getWidth(); x++) {
-                display += this.grid[y][x].toString();
+                display += this.grid[y][x].toString() + " ";
             }
             display += "\n";
         }

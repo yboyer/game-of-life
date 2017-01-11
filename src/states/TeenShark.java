@@ -1,5 +1,10 @@
-package game;
+package states;
 
+import entities.Shark;
+import entities.Pilchard;
+import entities.Cell;
+import entities.Sea;
+import game.GameOfLife;
 import java.util.List;
 
 /**
@@ -8,7 +13,7 @@ import java.util.List;
  * He eats first a nearby pilchard ; otherwise, he moves to a random nearby
  * water cell.
  */
-class TeenShark implements FishState {
+public class TeenShark implements FishState {
     private static final int AGE_STEP = 4;
 
     @Override

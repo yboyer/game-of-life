@@ -1,13 +1,15 @@
 package game;
 
-import java.util.regex.*;
+import entities.*; // Sea, Pilchard, Shark, Cell, Water
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 /**
  * Creates a sea and add life into it.
  */
 public class GameOfLife {
     private static Sea sea;
-    protected static boolean debug = false;
+    public static boolean debug = false;
 
     public static void main(String[] args) {
         boolean useDefault = false;

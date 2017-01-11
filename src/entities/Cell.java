@@ -1,11 +1,11 @@
-package game;
+package entities;
 
 /**
  * Represents a cell.
  *
- * @see model.Sea
+ * @see entities.Sea
  */
-abstract class Cell {
+public abstract class Cell {
     private int x;
     private int y;
 
@@ -62,4 +62,11 @@ abstract class Cell {
     public String toFormatedCoordinates() {
         return "{" + getY() + "," + getX() + "}";
     }
+
+    /**
+     * Return a display
+     * @return A display
+     */
+    @Override
+    public abstract String toString();
 }

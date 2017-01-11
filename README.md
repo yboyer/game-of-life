@@ -6,7 +6,7 @@
 ```sh
 ant run
 # or
-java -jar dist/GameOfLife.jar
+java -jar dist/GameOfLife.jar #--help
 ```
 
 #### Ant targets
